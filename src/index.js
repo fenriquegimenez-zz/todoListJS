@@ -17,7 +17,7 @@ app.post("/create", (req, res) => {
 
 // Server
 app.listen(port, () => {
-  console.log(`[SERVER] Server ready on ${port}`)
+  console.log(`[SERVER] Server ready on ${url}`)
 })
 
 connectDB()
