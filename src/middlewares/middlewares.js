@@ -1,4 +1,5 @@
 const { create } = require("../database/functions")
+const { todoValidator } = require("../helpers/validators")
 
 const createEndpoint = (req, res) => {
   try {
@@ -6,16 +7,10 @@ const createEndpoint = (req, res) => {
     console.log("Request received: ", todo)
 
     // Task validations
-    const emptyTaskRequest = Object.entries(todo).length === 0
-    const includesTask = todo.hasOwnProperty("task")
-    const emptyTask = todo.task === ""
-    const taskIsString = typeof todo.task === "string"
-    const validRequest =
-      !emptyTaskRequest && includesTask && !emptyTask && taskIsString
+    const validRequest = todoValidator(todo)
     if (!validRequest) {
       throw new Error("Invalid request")
     }
-
     // Saving the task
     const todoCreated = create(todo)
     console.log(todoCreated)
