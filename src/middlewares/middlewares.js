@@ -1,4 +1,4 @@
-const { create } = require("../database/functions")
+const { create, getAll } = require("../database/functions")
 const { todoValidator } = require("../helpers/validators")
 
 const createEndpoint = (req, res) => {
@@ -22,5 +22,9 @@ const createEndpoint = (req, res) => {
       .json({ msg: "There was an error, please check your request" })
   }
 }
+const getAllEndpoint = async (req, res) => {
+  const tasks = await getAll()
+  res.send({ tasks: tasks })
+}
 
-module.exports = { createEndpoint }
+module.exports = { createEndpoint, getAllEndpoint }

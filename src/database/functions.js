@@ -13,5 +13,17 @@ const create = todo => {
     todoCreated,
   }
 }
+const getAll = async () => {
+  try {
+    const tasks = await Todo.find({})
+    const tasksNames = tasks.map(task => {
+      return task.task
+    })
+    return tasksNames
+  } catch (error) {
+    console.log(error)
+    return "There was an error"
+  }
+}
 
-module.exports = { create }
+module.exports = { create, getAll }
