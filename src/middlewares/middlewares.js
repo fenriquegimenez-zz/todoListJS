@@ -1,5 +1,5 @@
-const { create, getAll } = require("../database/functions")
-const { todoValidator } = require("../helpers/validators")
+const { create, getAll, getById } = require("../database/functions")
+const { todoValidator, idValidator } = require("../helpers/validators")
 
 const createEndpoint = (req, res) => {
   try {
@@ -26,5 +26,21 @@ const getAllEndpoint = async (req, res) => {
   const tasks = await getAll()
   res.send({ tasks: tasks })
 }
+const getByIdEndpoint = async (req, res) => {
+  try {
+    const request = req.body
+    console.log(request)
+    const validId = idValidator(request)
+    if (!validId) {
+      throw new Error("Id no válido")
+    } else {
+      const task = await getById(request.id)
+      res.send(task)
+    }
+  } catch (error) {
+    console.log(error)
+    res.json({ msg: "Hubo un error, favor verifique su petición" })
+  }
+}
 
-module.exports = { createEndpoint, getAllEndpoint }
+module.exports = { createEndpoint, getAllEndpoint, getByIdEndpoint }

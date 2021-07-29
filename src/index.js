@@ -3,7 +3,11 @@ const cors = require("cors")
 require("dotenv").config({ path: ".env" })
 
 const connectDB = require("./config/db")
-const { createEndpoint, getAllEndpoint } = require("./middlewares/middlewares")
+const {
+  createEndpoint,
+  getAllEndpoint,
+  getByIdEndpoint,
+} = require("./middlewares/middlewares")
 
 const port = process.env.PORT
 const app = express()
@@ -18,6 +22,10 @@ app.post("/create", (req, res) => {
 
 app.get("/getAll", async (req, res) => {
   await getAllEndpoint(req, res)
+})
+
+app.get("/getById", async (req, res) => {
+  await getByIdEndpoint(req, res)
 })
 
 // Server

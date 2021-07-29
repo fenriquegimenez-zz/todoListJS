@@ -25,5 +25,14 @@ const getAll = async () => {
     return "There was an error"
   }
 }
+const getById = async id => {
+  try {
+    const task = await Todo.find({ _id: id })
+    return task
+  } catch (error) {
+    console.log(error)
+    return { err: "There was an error" }
+  }
+}
 
-module.exports = { create, getAll }
+module.exports = { create, getAll, getById }
