@@ -17,7 +17,7 @@ const getAll = async () => {
   try {
     const tasks = await Todo.find({})
     const tasksNames = tasks.map(task => {
-      return task.task
+      return { task: task.task, id: task._id }
     })
     return tasksNames
   } catch (error) {
