@@ -41,5 +41,14 @@ const deleteTask = async id => {
     return { err: "There was an error" }
   }
 }
-
-module.exports = { create, getAll, getById, deleteTask }
+const updateTask = async id => {
+  try {
+    const task = await Todo.findOne({ _id: id })
+    task.completed = !task.completed
+    task.save()
+  } catch (error) {
+    console.log(error)
+    return "There was an error"
+  }
+}
+module.exports = { create, getAll, getById, deleteTask, updateTask }
