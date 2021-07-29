@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon .",
-    "start": "node ."
+    "start": "node .",
+    "test": "jest --watch"
   },
   "dependencies": {
     "cors": "^2.8.5",
