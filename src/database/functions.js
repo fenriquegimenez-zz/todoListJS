@@ -34,5 +34,12 @@ const getById = async id => {
     return { err: "There was an error" }
   }
 }
+const deleteTask = async id => {
+  try {
+    await Todo.deleteOne({ _id: id })
+  } catch (error) {
+    return { err: "There was an error" }
+  }
+}
 
-module.exports = { create, getAll, getById }
+module.exports = { create, getAll, getById, deleteTask }

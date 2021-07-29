@@ -1,4 +1,4 @@
-const { create, getAll, getById } = require("../database/functions")
+const { create, getAll, getById, deleteTask } = require("../database/functions")
 const { todoValidator, idValidator } = require("../helpers/validators")
 
 const createEndpoint = (req, res) => {
@@ -42,5 +42,26 @@ const getByIdEndpoint = async (req, res) => {
     res.json({ msg: "Hubo un error, favor verifique su petición" })
   }
 }
+const deleteEndpoint = async (req, res) => {
+  try {
+    const request = req.body
+    console.log(request)
+    const validId = idValidator(request)
+    if (!validId) {
+      throw new Error("Id no válido")
+    } else {
+      await deleteTask(request.id)
+      res.json({ msg: "Task deleted succesfully" })
+    }
+  } catch (error) {
+    console.log(error)
+    res.json({ msg: "There was an error" })
+  }
+}
 
-module.exports = { createEndpoint, getAllEndpoint, getByIdEndpoint }
+module.exports = {
+  createEndpoint,
+  getAllEndpoint,
+  getByIdEndpoint,
+  deleteEndpoint,
+}

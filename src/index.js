@@ -7,6 +7,7 @@ const {
   createEndpoint,
   getAllEndpoint,
   getByIdEndpoint,
+  deleteEndpoint,
 } = require("./middlewares/middlewares")
 
 const port = process.env.PORT
@@ -26,6 +27,9 @@ app.get("/getAll", async (req, res) => {
 
 app.get("/getById", async (req, res) => {
   await getByIdEndpoint(req, res)
+})
+app.delete("/delete", async (req, res) => {
+  await deleteEndpoint(req, res)
 })
 
 // Server
