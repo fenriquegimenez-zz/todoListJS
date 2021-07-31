@@ -24,7 +24,7 @@ const createEndpoint = (req, res) => {
   } catch (error) {
     console.error(error)
     res
-      .status(400)
+      .status(406)
       .json({ msg: "There was an error, please check your request" })
   }
 }
@@ -45,7 +45,7 @@ const getByIdEndpoint = async (req, res) => {
     }
   } catch (error) {
     console.log(error)
-    res.json({ msg: "Hubo un error, favor verifique su petición" })
+    res.status(406).json({ msg: "Hubo un error, favor verifique su petición" })
   }
 }
 const deleteEndpoint = async (req, res) => {
@@ -61,7 +61,7 @@ const deleteEndpoint = async (req, res) => {
     }
   } catch (error) {
     console.log(error)
-    res.json({ msg: "There was an error" })
+    res.status(406).json({ msg: "There was an error" })
   }
 }
 const updateEndpoint = async (req, res) => {

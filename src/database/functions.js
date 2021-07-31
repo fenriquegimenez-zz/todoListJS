@@ -22,23 +22,23 @@ const getAll = async () => {
     return tasksNames
   } catch (error) {
     console.log(error)
-    return "There was an error"
+    throw new Error("There was an error")
   }
 }
 const getById = async id => {
   try {
     const task = await Todo.find({ _id: id })
-    return task
+    return { task: task }
   } catch (error) {
     console.log(error)
-    return { err: "There was an error" }
+    throw new Error("There was an error")
   }
 }
 const deleteTask = async id => {
   try {
     await Todo.deleteOne({ _id: id })
   } catch (error) {
-    return { err: "There was an error" }
+    throw new Error("There was an error")
   }
 }
 const updateTask = async id => {
