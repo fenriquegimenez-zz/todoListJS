@@ -20,7 +20,9 @@ const createEndpoint = (req, res) => {
     // Saving the task
     const todoCreated = create(todo)
     console.log(todoCreated)
-    res.status(201).json({ data: todoCreated })
+    res
+      .status(201)
+      .json({ msg: "Task created successfully", task: todoCreated })
   } catch (error) {
     console.error(error)
     res
